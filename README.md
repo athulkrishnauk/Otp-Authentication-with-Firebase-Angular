@@ -1,3 +1,9 @@
+Add Firebase to your Angular project npm i firebase.
+
+If you haven't yet connected your app to your Firebase project
+
+On the Sign-in Method page, enable the Phone Number sign-in method.
+
 # WebOtpAuthentication
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.1.
