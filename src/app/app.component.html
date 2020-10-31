@@ -1,21 +1,39 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="container-fluid main_div_style">
 
-<router-outlet></router-outlet>
+  <div class="row">
+    
+    <div class="col-lg-4 col-md-4"></div>
+
+    <div class="col-lg-4 col-md-4 form_style">
+
+      <h4 class="head_style">Otp Authentication with Firebase</h4><br>
+
+      <form [formGroup]="loginForm">
+        
+        <input type="text" class="form-control" formControlName="phoneNum" placeholder="Phone Number"
+        [(ngModel)] = "phone_num">
+        <div *ngIf="f.phoneNum.invalid && f.phoneNum.touched">
+          <span  *ngIf="f.phoneNum.errors.required" style="color: red;">Phone number required</span> 
+          <span  *ngIf="f.phoneNum.errors.minlength" style="color: red;">Please enter a valid phone number</span> 
+        </div><br>
+    
+        <mat-spinner *ngIf="!recaptcha.innerHTML" [diameter]="40"></mat-spinner>
+        <div #recaptcha id="recaptcha-container" [hidden] = "hidden" ></div><br>
+        <button class="btn btn-primary" [hidden] = "hidden" (click) = "fn_otp_send()" [disabled] = "phone_num.length <= 13">Send OTP</button><br>
+        <div *ngIf = "windowRef.confirmationResult">
+          <input type="text" class="form-control field_style" formControlName="userOtp" placeholder="Enter Otp">
+            <div *ngIf="f.userOtp.invalid && f.userOtp.touched">
+              <span  *ngIf="f.userOtp.errors.required" style="color: red;">OTP required</span> 
+              <span  *ngIf="f.userOtp.errors.minlength" style="color: red;">Minimum length is 6</span> 
+            </div> 
+          <button (click) = "fn_verify_otp()" class="btn btn-primary field_style">Verify</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="col-lg-4 col-md-4"></div>
+
+  </div>
+
+</div>
+
