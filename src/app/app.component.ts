@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
     private win: WindowService) {}
 
   ngOnInit() {
-    console.log("hii")
     this.loginForm = new FormGroup({
       phoneNum: new FormControl('', [Validators.required, Validators.minLength(14)]),
       userOtp: new FormControl(null, [Validators.required, Validators.minLength(6)])
@@ -56,7 +55,6 @@ export class AppComponent implements OnInit {
  
  // verift user otp
   fn_verify_otp(){
-    console.log(this.loginForm.value.userOtp)
     this.windowRef.confirmationResult
     .confirm(this.loginForm.value.userOtp)
     .then( result=>{
